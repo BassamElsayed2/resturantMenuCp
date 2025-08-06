@@ -11,6 +11,7 @@ import {
 } from "../../../services/apiRestaurants";
 import supabase from "../../../services/supabase";
 import Link from "next/link";
+import { UUID } from "crypto";
 
 const MenusTable: React.FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
@@ -142,7 +143,7 @@ const MenusTable: React.FC = () => {
         }
 
         // Delete restaurant from database
-        await deleteRestaurant(restaurant.id);
+        await deleteRestaurant(restaurant.id as UUID);
 
         // Update local state
         setRestaurants((prev) => prev.filter((r) => r.id !== restaurant.id));
@@ -172,7 +173,7 @@ const MenusTable: React.FC = () => {
 
     const updatePromise = new Promise(async (resolve, reject) => {
       try {
-        const data = await updateRestaurant(updatedData.id, {
+        const data = await updateRestaurant(updatedData.id as UUID, {
           name: updatedData.name,
           desc_ar: updatedData.desc_ar,
           logo: updatedData.logo,

@@ -244,10 +244,6 @@ const CreateRestaurantForm: React.FC = () => {
                       id="name"
                       {...register("name", {
                         required: "يجب إدخال اسم المطعم",
-                        maxLength: {
-                          value: 100,
-                          message: "يجب ألا يزيد عن 100 حرف",
-                        },
                       })}
                     />
                     {errors?.name?.message && (
